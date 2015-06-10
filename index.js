@@ -1,6 +1,6 @@
 exports.register = function(server, options, next) {
     var endpoint = options.endpoint || '/';
-    var alexaService = options.service;
+    var alexaService = options.speechlet;
 
     server.route({
         method: 'POST',
