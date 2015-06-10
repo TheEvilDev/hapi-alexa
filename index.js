@@ -10,18 +10,18 @@ exports.register = function(server, options, next) {
             var type = payload.request.type;
 
 
-            if(type === 'LaunchRequest') {
-                var response = alexaService.launch();
-                reply(response);
+            if (type === 'LaunchRequest') {
+                alexaService.launch(reply);
             }
 
-            if(type === 'IntentRequest') {
-            var intent = payload.request.intent;
+            if (type === "SessionEndedRequest") {
+                alexaService.quit(reply);
+            }
 
-            alexaService[intent.name](intent.slots)
-                .then(function(response) {
-                    reply(response);
-                });
+            if (type === 'IntentRequest') {
+                var intent = payload.request.intent;
+
+                alexaService[intent.name](intent.slots, reply);
             }
         },
         config: {

@@ -63,22 +63,32 @@ Example "Hello World" speechlet:
 ``` javascript
 module.exports = function() {
     return {
-        launch: function() {
-            return {
+        setup: function(done) {
+            done({
                 outputSpeech: {
                     type: 'PlainText',
                     text: "Hello World"
                 },
                 shouldEndSession: false
-            }
+            });
         },
-        helloIntent: function(name) { // maps hello intent with a "name" slot
-            return {
+        helloIntent: function(name, done) { // maps hello intent with a "name" slot
+            done({
                 outputSpeech: {
                     type: 'PlainText',
                     text: 'Hello ' + name
-                }
-            }
+                },
+                shouldEndSession: false;
+            });
+        },
+        tearDown: function(done) {
+            done({
+                outputSpeech: {
+                    type: 'PlainText',
+                    text: 'Good bye.'
+                },
+                shouldEndSession: true
+            });
         }
     }
 }
