@@ -28,11 +28,14 @@ Install Plugin:
     register: require('hapi-alexa'),
     options: {
        speechlet: {
-           launch: function(){
-               return {} // response
+           setup: function(done){
+               done({ response: 'setup' });
+           },
+           tearDown: function(done) {
+               done({ response: 'goodbye' });
            },
            HelloWorld: function(slot1) {
-               return {}; // response from hello world intent
+               done({response: 'hello world'});
            }
        }
     }
@@ -56,7 +59,7 @@ Install Plugin:
 ## Implementing speechlet
 You need to implement a javascript object to represent your speechlet. This object should respond with a json object as per the SDK documentation.
 
-The service will automatically map intents to functions on your speechlet, the only required function is a launch function that will initialize your app.
+The service will automatically map intents to functions on your speechlet. You will also need to add a setup and tearDown function to handle launch and exit requests respectively.
 
 Example "Hello World" speechlet:
 

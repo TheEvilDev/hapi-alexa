@@ -11,11 +11,11 @@ exports.register = function(server, options, next) {
 
 
             if (type === 'LaunchRequest') {
-                alexaService.launch(reply);
+                alexaService.setup(reply);
             }
 
             if (type === "SessionEndedRequest") {
-                alexaService.quit(reply);
+                alexaService.tearDown(reply);
             }
 
             if (type === 'IntentRequest') {
