@@ -1,0 +1,26 @@
+{
+  "name": "hapi-alexa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheEvilDev/hapi-alexa.git"
+  },
+  "keywords": [
+    "hapi",
+    "alexa"
+  ],
+  "author": "Mitchell Lee <mitch@evildev.net> (http://blog.evildev.net)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheEvilDev/hapi-alexa/issues"
+  },
+  "homepage": "https://github.com/TheEvilDev/hapi-alexa",
+  "dependencies": {
+    "hapi": "^8.6.1"
+  }
+}
