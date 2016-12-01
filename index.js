@@ -1,27 +1,27 @@
-exports.register = function(server, options, next) {
+exports.register = function (server, options, next) {
     var endpoint = options.endpoint || '/';
     var alexaService = options.speechlet;
 
     server.route({
         method: 'POST',
         path: endpoint,
-        handler: function(req, reply) {
+        handler: function (req, reply) {
             var payload = req.payload;
             var type = payload.request.type;
 
 
             if (type === 'LaunchRequest') {
-                alexaService.setup(reply);
+                alexaService.setup(reply, payload);
             }
 
             if (type === "SessionEndedRequest") {
-                alexaService.tearDown(reply);
+                alexaService.tearDown(reply, payload);
             }
 
             if (type === 'IntentRequest') {
                 var intent = payload.request.intent;
 
-                alexaService[intent.name](intent.slots, reply);
+                alexaService[intent.name](intent.slots, reply, payload);
             }
         },
         config: {
